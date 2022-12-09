@@ -42,3 +42,47 @@ mainWindow.show()
 
 # Run the main event loop
 sys.exit(app.exec_())
+
+
+
+
+
+#####################version 2#########
+# Import necessary libraries
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QAction, QFileDialog, QDialog, QFormLayout, QLineEdit, QDialogButtonBox
+from email import message
+from email.policy import default
+
+# Define the settings dialog class
+class SettingsDialog(QDialog):
+    def __init__(self):
+        # Initialize the settings dialog
+        super().__init__()
+        self.initUI()
+        
+    def initUI(self):
+        # Set the dialog title and size
+        self.setWindowTitle('Filter Settings')
+        self.resize(300, 150)
+        
+        # Create the form layout and input fields
+        layout = QFormLayout()
+        self.senderField = QLineEdit()
+        self.subjectField = QLineEdit()
+        layout.addRow('Sender:', self.senderField)
+        layout.addRow('Subject:', self.subjectField)
+        
+        # Create the button box
+        buttons = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
+        buttons.accepted.connect(self.accept)
+        buttons.rejected.connect(self.reject)
+        
+        # Add the layout and button box to the dialog
+        layout.addWidget(buttons)
+        self.setLayout(layout)
+
+# Define the main window class
+class MainWindow(QMainWindow):
+    def __init__(self):
+        # Initialize the main
